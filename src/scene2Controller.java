@@ -9,11 +9,11 @@ import javafx.scene.Scene;
 import javafx.scene.Node;   
 import javafx.stage.Stage;
 
-public class Controller {
+public class scene2Controller {
 
     public void changeScreenButtonPushed(ActionEvent event) throws IOException
     {
-        Parent viewParent = FXMLLoader.load(getClass().getResource("scene2.fxml"));
+        Parent viewParent = FXMLLoader.load(getClass().getResource("questionBoard.fxml"));
         Scene viewScene = new Scene(viewParent);
         
         //This line gets the Stage information
