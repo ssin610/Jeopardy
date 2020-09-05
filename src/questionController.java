@@ -60,7 +60,7 @@ public class questionController implements Initializable {
 
     public void submitButtonPushed(ActionEvent event) throws IOException {
         Main.answeredQuestions.add(text);
-        if (userAnswer.getText().equals(answer)){
+        if (userAnswer.getText().equalsIgnoreCase(answer)){
             Main.balance += value;
             System.out.println(Main.balance);
             

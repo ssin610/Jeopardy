@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.Node;   
 import javafx.stage.Stage;
 
-public class Controller {
+public class homeController {
 
     public void changeScreenButtonPushed(ActionEvent event) throws IOException
     {
