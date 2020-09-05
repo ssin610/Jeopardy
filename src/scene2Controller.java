@@ -22,4 +22,17 @@ public class scene2Controller {
         window.setScene(viewScene);
         window.show();
     }
+
+    public void changeScreenToAskAQuestionButtonPushed(ActionEvent event) throws IOException
+    {
+        Parent viewParent = FXMLLoader.load(getClass().getResource("askAQuestion.fxml"));
+        Scene viewScene = new Scene(viewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(viewScene);
+        window.show();
+    }
+    
 }

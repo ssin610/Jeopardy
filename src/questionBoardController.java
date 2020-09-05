@@ -10,12 +10,22 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.Node;   
+import javafx.stage.Stage;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 
 public class questionBoardController implements Initializable {
 	int index_y = 0;
@@ -33,8 +43,8 @@ public class questionBoardController implements Initializable {
 		if (directoryListing != null) {
 			for (File child : directoryListing) 
 			{	index_y = 0;
-				
-				addButton(child.getName());
+				button_grid.add(new Text(child.getName()), index_x,index_y);
+			
 	
 				Future<List<String>> future;
 				ExecutorService executorService = Executors.newSingleThreadExecutor();
@@ -77,6 +87,18 @@ public class questionBoardController implements Initializable {
 	public void addButton(String text){
         Button sound_button = new Button(text);
         button_grid.add(sound_button, index_x,index_y);
+	}
+	
+	public void changeScreenButtonPushed(ActionEvent event) throws IOException
+    {
+        Parent viewParent = FXMLLoader.load(getClass().getResource("scene2.fxml"));
+        Scene viewScene = new Scene(viewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(viewScene);
+        window.show();
     }
 
 }
