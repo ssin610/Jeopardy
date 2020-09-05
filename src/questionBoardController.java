@@ -39,48 +39,54 @@ public class questionBoardController implements Initializable {
 	public void initialize(URL url, ResourceBundle rb) {
 
 		File dir = new File("./assignment2ssin610/src/categories");
-		File[] directoryListing = dir.listFiles();
-		if (directoryListing != null) {
-			for (File child : directoryListing) 
-			{	index_y = 0;
-				button_grid.add(new Text(child.getName()), index_x,index_y);
-			
-	
-				Future<List<String>> future;
-				ExecutorService executorService = Executors.newSingleThreadExecutor();
-				TextFileReader reader = new TextFileReader();
-				future = executorService.submit(new Callable<List<String>>() {
-					public List<String> call() throws Exception {
-						return reader.read(child);
-					}
-				});
-			
-				List<String> lines = null;
-				try {
-					lines = future.get();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ExecutionException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				executorService.shutdownNow();
-				
-				for (String line : lines) {
-					index_y++;
-					line = line.split("\\,")[0];
-					addButton(line);
+        File[] directoryListing = dir.listFiles();
+        if (directoryListing != null) {
+            for (File child : directoryListing) {
+                index_y = 0;
+                button_grid.add(new Text(child.getName()), index_x, index_y);
 
-				}
-				index_x++;
-			}
-		} else {
-			// Handle the case where dir is not really a directory.
-			// Checking dir.isDirectory() above would not be sufficient
-			// to avoid race conditions with another process that deletes
-			// directories.
-			System.out.println("S");
+                Future<List<String>> future;
+                ExecutorService executorService = Executors.newSingleThreadExecutor();
+                TextFileReader reader = new TextFileReader();
+                future = executorService.submit(new Callable<List<String>>() {
+                    public List<String> call() throws Exception {
+                        return reader.read(child);
+                    }
+                });
+
+                List<String> lines = null;
+                try {
+                    lines = future.get();
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                executorService.shutdownNow();
+
+                for (String line : lines) {
+                    
+                    String question = line.split("\\,")[1];
+                    String answer = line.split("\\,")[2];
+                    answer = answer.trim(); // remove leading space from answer
+                    line = line.split("\\,")[0];
+                    if (!(Main.answeredQuestions.contains(question))) {
+                        index_y++;
+                        addButton(line);
+                    }
+                   
+
+                }
+                index_x++;
+            }
+        } else {
+            // Handle the case where dir is not really a directory.
+            // Checking dir.isDirectory() above would not be sufficient
+            // to avoid race conditions with another process that deletes
+            // directories.
+            System.out.println("S");
 		}
 	}
 	

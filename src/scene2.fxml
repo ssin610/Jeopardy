@@ -6,9 +6,9 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="assignment2ssin610.src.scene2Controller">
    <children>
       <Button layoutX="259.0" layoutY="52.0" mnemonicParsing="false" onAction="#changeScreenButtonPushed" text="Print question board" />
-      <Button layoutX="259.0" layoutY="104.0" mnemonicParsing="false" onAction="#changeScreenToAskAQuestionButtonPushed"  text="Ask a question" />
-      <Button layoutX="259.0" layoutY="158.0" mnemonicParsing="false" text="View current winnings" />
-      <Button layoutX="259.0" layoutY="212.0" mnemonicParsing="false" text="Reset game" />
-      <Button layoutX="259.0" layoutY="264.0" mnemonicParsing="false" text="Exit" />
+      <Button layoutX="259.0" layoutY="104.0" mnemonicParsing="false" onAction="#changeScreenToAskAQuestionButtonPushed" text="Ask a question" />
+      <Button layoutX="259.0" layoutY="158.0" mnemonicParsing="false" onAction="#changeScreenToViewWinnings" text="View current winnings" />
+      <Button layoutX="259.0" layoutY="212.0" mnemonicParsing="false" onAction="#onReset" text="Reset game" />
+      <Button layoutX="259.0" layoutY="264.0" mnemonicParsing="false" onAction="#onExit" text="Exit" />
    </children>
 </AnchorPane>
