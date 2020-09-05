@@ -44,7 +44,7 @@ public class viewWinningsController implements Initializable {
     
     public void changeScreenButtonPushed(ActionEvent event) throws IOException
     {
-        Parent viewParent = FXMLLoader.load(getClass().getResource("scene2.fxml"));
+        Parent viewParent = FXMLLoader.load(getClass().getResource("mainMenu.fxml"));
         Scene viewScene = new Scene(viewParent);
         
         //This line gets the Stage information

@@ -14,17 +14,24 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.Node;   
+import javafx.scene.Node;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class questionBoardController implements Initializable {
@@ -34,17 +41,19 @@ public class questionBoardController implements Initializable {
 
 	@FXML
 	GridPane button_grid;
-
+	
 
 	public void initialize(URL url, ResourceBundle rb) {
-
 		File dir = new File("./assignment2ssin610/src/categories");
         File[] directoryListing = dir.listFiles();
         if (directoryListing != null) {
             for (File child : directoryListing) {
-                index_y = 0;
-                button_grid.add(new Text(child.getName()), index_x, index_y);
-
+				index_y = 0;
+				Text category = new Text(child.getName());
+				category.setFont(Font.font("Agency FB", 50));
+				category.setFill(Color.LIGHTSKYBLUE);
+                button_grid.add(category, index_x, index_y);
+				button_grid.setHalignment(category, HPos.CENTER);
                 Future<List<String>> future;
                 ExecutorService executorService = Executors.newSingleThreadExecutor();
                 TextFileReader reader = new TextFileReader();
@@ -91,13 +100,17 @@ public class questionBoardController implements Initializable {
 	}
 	
 	public void addButton(String text){
-        Button sound_button = new Button(text);
-        button_grid.add(sound_button, index_x,index_y);
+		Button sound_button = new Button(text);
+		sound_button.setPrefSize(250, 80);
+		sound_button.setFont(Font.font("Agency FB", 43));
+		sound_button.setStyle("-fx-background-color: #ffc100; ");
+		button_grid.add(sound_button, index_x,index_y);
+		button_grid.setHalignment(sound_button, HPos.CENTER);
 	}
 	
 	public void changeScreenButtonPushed(ActionEvent event) throws IOException
     {
-        Parent viewParent = FXMLLoader.load(getClass().getResource("scene2.fxml"));
+        Parent viewParent = FXMLLoader.load(getClass().getResource("mainMenu.fxml"));
         Scene viewScene = new Scene(viewParent);
         
         //This line gets the Stage information

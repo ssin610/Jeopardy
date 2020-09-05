@@ -7,7 +7,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="1000.0" style="-fx-background-color: #1f1f1f;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="assignment2ssin610.src.homeController">
    <children>
-      <Text fill="#c93737" layoutX="178.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jeopardy">
+      <Text fill="#5ec738" layoutX="178.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jeopardy">
          <font>
             <Font name="Agency FB Bold" size="200.0" />
          </font>

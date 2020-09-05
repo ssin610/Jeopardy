@@ -11,7 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.Node;   
 import javafx.stage.Stage;
 
-public class scene2Controller {
+public class mainMenuController {
 
     public void changeScreenButtonPushed(ActionEvent event) throws IOException
     {

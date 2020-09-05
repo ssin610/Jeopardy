@@ -5,10 +5,11 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="742.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="assignment2ssin610.src.questionBoardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="1000.0" style="-fx-background-color: #1f1f1f;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="assignment2ssin610.src.questionBoardController">
    <children>
-      <GridPane fx:id="button_grid" alignment="TOP_CENTER" gridLinesVisible="true" layoutX="-1.0" prefHeight="394.0" prefWidth="742.0">
+      <GridPane fx:id="button_grid" alignment="CENTER" gridLinesVisible="true" layoutX="-1.0" prefHeight="558.0" prefWidth="1000.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -23,6 +24,9 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
-      <Button layoutX="60.0" layoutY="425.0" mnemonicParsing="false" onAction="#changeScreenButtonPushed" text="Go back" />
+      <Button layoutX="375.0" layoutY="577.0" mnemonicParsing="false" onAction="#changeScreenButtonPushed" prefHeight="80.0" prefWidth="250.0" style="-fx-background-color: #ffc100;" text="Main Menu">
+         <font>
+            <Font name="Agency FB Bold" size="43.0" />
+         </font></Button>
    </children>
 </AnchorPane>
