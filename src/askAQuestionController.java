@@ -68,8 +68,10 @@ public class askAQuestionController implements Initializable {
                 for (String line : lines) {
                     index_y++;
                     String question = line.split("\\,")[1];
+                    String answer = line.split("\\,")[2];
+                    answer = answer.trim(); // remove leading space from answer
                     line = line.split("\\,")[0];
-                    addButton(line, question);
+                    addButton(line, question, answer);
 
                 }
                 index_x++;
@@ -83,7 +85,7 @@ public class askAQuestionController implements Initializable {
         }
     }
 
-    public void addButton(String text, String question){
+    public void addButton(String text, String question, String answer){
         Button sound_button = new Button(text);
         
         sound_button.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() {
@@ -91,6 +93,8 @@ public class askAQuestionController implements Initializable {
             public void handle(ActionEvent event) {
                 try {
                     questionController.text = question;
+                    questionController.answer = answer;
+                    questionController.value = Integer.valueOf(text);
                     changeScreenToQuestionButtonPushed(event);
                 } catch (IOException e) {
                     // TODO Auto-generated catch block
