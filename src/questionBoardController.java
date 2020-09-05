@@ -18,27 +18,24 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
 public class questionBoardController implements Initializable {
-	int index = 0;
-	int target = 13;
+	int index_y = 0;
+	int index_x = 0;
+
 
 	@FXML
 	GridPane button_grid;
 
-	@FXML
-	private TextArea linesTextArea;
-	@FXML
-	private TextArea categories;
 
 	public void initialize(URL url, ResourceBundle rb) {
 
 		File dir = new File("./assignment2ssin610/src/categories");
 		File[] directoryListing = dir.listFiles();
 		if (directoryListing != null) {
-			for (File child : directoryListing) {
-				index++;
-				addButton();
-				categories.appendText(child.getName() + "\n");
+			for (File child : directoryListing) 
+			{	index_y = 0;
 				
+				addButton(child.getName());
+	
 				Future<List<String>> future;
 				ExecutorService executorService = Executors.newSingleThreadExecutor();
 				TextFileReader reader = new TextFileReader();
@@ -61,11 +58,12 @@ public class questionBoardController implements Initializable {
 				executorService.shutdownNow();
 				
 				for (String line : lines) {
-					index++;
-					addButton();
+					index_y++;
 					line = line.split("\\,")[0];
-					linesTextArea.appendText(line + "\n");
+					addButton(line);
+
 				}
+				index_x++;
 			}
 		} else {
 			// Handle the case where dir is not really a directory.
@@ -76,9 +74,9 @@ public class questionBoardController implements Initializable {
 		}
 	}
 	
-	public void addButton(){
-        Button sound_button = new Button("Button_" + index);
-        button_grid.add(sound_button, index,2);
+	public void addButton(String text){
+        Button sound_button = new Button(text);
+        button_grid.add(sound_button, index_x,index_y);
     }
 
 }
