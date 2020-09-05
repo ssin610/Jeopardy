@@ -1,6 +1,7 @@
 package assignment2ssin610.src;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -11,13 +12,18 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 
 public class questionBoardController implements Initializable {
+	int index = 0;
+	int target = 13;
 
 	@FXML
-	private TextField urlTextField;
+	GridPane button_grid;
+
 	@FXML
 	private TextArea linesTextArea;
 	@FXML
@@ -25,12 +31,14 @@ public class questionBoardController implements Initializable {
 
 	public void initialize(URL url, ResourceBundle rb) {
 
-		File dir = new File("C:/Users/New/Documents/testread/sauce/categories");
+		File dir = new File("./assignment2ssin610/src/categories");
 		File[] directoryListing = dir.listFiles();
 		if (directoryListing != null) {
 			for (File child : directoryListing) {
+				index++;
+				addButton();
 				categories.appendText(child.getName() + "\n");
-				linesTextArea.appendText(child.getName() + "\n");
+				
 				Future<List<String>> future;
 				ExecutorService executorService = Executors.newSingleThreadExecutor();
 				TextFileReader reader = new TextFileReader();
@@ -39,7 +47,7 @@ public class questionBoardController implements Initializable {
 						return reader.read(child);
 					}
 				});
-		
+			
 				List<String> lines = null;
 				try {
 					lines = future.get();
@@ -53,6 +61,9 @@ public class questionBoardController implements Initializable {
 				executorService.shutdownNow();
 				
 				for (String line : lines) {
+					index++;
+					addButton();
+					line = line.split("\\,")[0];
 					linesTextArea.appendText(line + "\n");
 				}
 			}
@@ -64,5 +75,10 @@ public class questionBoardController implements Initializable {
 			System.out.println("S");
 		}
 	}
+	
+	public void addButton(){
+        Button sound_button = new Button("Button_" + index);
+        button_grid.add(sound_button, index,2);
+    }
 
 }
