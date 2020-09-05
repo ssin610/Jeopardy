@@ -59,13 +59,14 @@ public class questionController implements Initializable {
     }
 
     public void submitButtonPushed(ActionEvent event) throws IOException {
+        Main.answeredQuestions.add(text);
         if (userAnswer.getText().equals(answer)){
             Main.balance += value;
             System.out.println(Main.balance);
             
         }
         else {
-            System.out.println("false");
+            Main.balance -= value;
             System.out.println(answer);
         }
         submit.setDisable(true);

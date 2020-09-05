@@ -66,12 +66,16 @@ public class askAQuestionController implements Initializable {
                 executorService.shutdownNow();
 
                 for (String line : lines) {
-                    index_y++;
+                    
                     String question = line.split("\\,")[1];
                     String answer = line.split("\\,")[2];
                     answer = answer.trim(); // remove leading space from answer
                     line = line.split("\\,")[0];
-                    addButton(line, question, answer);
+                    if (!(Main.answeredQuestions.contains(question))) {
+                        index_y++;
+                        addButton(line, question, answer);
+                    }
+                   
 
                 }
                 index_x++;

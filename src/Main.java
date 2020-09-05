@@ -1,5 +1,7 @@
 package assignment2ssin610.src;
 
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,6 +13,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     public static int balance = 0;
+    public static ArrayList<String> answeredQuestions = new ArrayList<String>();
 
     @Override
     public void start(Stage primaryStage) throws Exception{
