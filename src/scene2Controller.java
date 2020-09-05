@@ -1,7 +1,9 @@
 package assignment2ssin610.src;
 
+import java.io.File;
 import java.io.IOException;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -51,12 +53,15 @@ public class scene2Controller {
     {
         Main.balance = 0;
         Main.answeredQuestions.clear();
+        File b = new File("balance");
+        b.delete();
+        File a = new File("answeredQuestions");
+        a.delete();
     }
 
     public void onExit(ActionEvent event) throws IOException
     {
-        Main.balance = 0;
-        Main.answeredQuestions.clear();
+        Platform.exit();
     }
     
 }

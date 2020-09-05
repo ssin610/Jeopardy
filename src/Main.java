@@ -1,5 +1,7 @@
 package assignment2ssin610.src;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javafx.application.Application;
@@ -8,23 +10,37 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
-
 public class Main extends Application {
 
     public static int balance = 0;
     public static ArrayList<String> answeredQuestions = new ArrayList<String>();
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.show();
+        TextFileReader reader = new TextFileReader();
+        File b = new File("balance");
+        if (b.exists()){
+            balance = Integer.valueOf(reader.read(b).get(0));
+        }
+        File a = new File("answeredQuestions");
+        if (a.exists()){
+            answeredQuestions = (ArrayList<String>) reader.read(a);
+        }
     }
-
 
     public static void main(String[] args) {
         launch(args);
+        
+    }
+
+    @Override
+    public void stop() throws IOException {
+        System.out.println("Stage is closing");
+        TextFileWriter.write("balance", balance, null);   // Save file
+        TextFileWriter.write("answeredQuestions", null, answeredQuestions);
     }
 }
