@@ -10,7 +10,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-
 import application.Main;
 import helper.TextFileReader;
 import javafx.event.ActionEvent;
@@ -20,26 +19,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.Node;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class askAQuestionController implements Initializable {
-    int index_y = 0;
-    int index_x = 0;
-    int counter2 = 0;
+
     @FXML
-    GridPane button_grid;
+    GridPane grid;
 
     @FXML
     Button winnings;
@@ -50,10 +42,16 @@ public class askAQuestionController implements Initializable {
     @FXML
     Text resetText;
 
+    int index_y = 0;
+    int index_x = 0;
+    int counter2 = 0;
+
+    
+
     public void initialize(URL url, ResourceBundle rb) {
         resetText.setVisible(false);
         reset.setVisible(false);
-        winnings.setText("Winnings: $" + Integer.toString(Main.balance));
+        winnings.setText("Winnings: $" + Integer.toString(Main.getWinnings()));
         String parentDirPath = new File(System.getProperty("user.dir")).getParent();
         File dir = new File(parentDirPath + "/categories");
         File[] directoryListing = dir.listFiles();
@@ -64,8 +62,8 @@ public class askAQuestionController implements Initializable {
                 Text category = new Text(child.getName());
 				category.setFont(Font.font("Agency FB", 45));
 				category.setFill(Color.LIGHTSKYBLUE);
-                button_grid.add(category, index_x, index_y);
-				button_grid.setHalignment(category, HPos.CENTER);
+                grid.add(category, index_x, index_y);
+				grid.setHalignment(category, HPos.CENTER);
                 Future<List<String>> future;
                 ExecutorService executorService = Executors.newSingleThreadExecutor();
                 TextFileReader reader = new TextFileReader();
@@ -93,7 +91,7 @@ public class askAQuestionController implements Initializable {
                     String answer = line.split("\\,")[2];
                     answer = answer.trim(); // remove leading space from answer
                     line = line.split("\\,")[0];
-                    if (!(Main.answeredQuestions.contains(question))) {
+                    if (!(Main.getAnsweredQuestions().contains(question))) {
                         counter++;
                         index_y++;
                         addButton(line, question, answer);
@@ -104,8 +102,8 @@ public class askAQuestionController implements Initializable {
                     complete.setFont(Font.font("Agency FB", 29));
                     complete.setFill(Color.LIGHTGREEN);
                     complete.setWrappingWidth(150);
-                    button_grid.add(complete, index_x, 1);
-                    button_grid.setHalignment(complete, HPos.CENTER);
+                    grid.add(complete, index_x, 1);
+                    grid.setHalignment(complete, HPos.CENTER);
                     counter2++;
                 }
                 index_x++;
@@ -143,8 +141,8 @@ public class askAQuestionController implements Initializable {
                 }
             }
         });
-        button_grid.add(sound_button, index_x,index_y);
-        button_grid.setHalignment(sound_button, HPos.CENTER);
+        grid.add(sound_button, index_x,index_y);
+        grid.setHalignment(sound_button, HPos.CENTER);
 	}
 	
 	public void changeScreenButtonPushed(ActionEvent event) throws IOException

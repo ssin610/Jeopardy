@@ -73,7 +73,7 @@ public class mainMenuController implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        winnings.setText("Winnings: $" + Integer.toString(Main.balance));
+        winnings.setText("Winnings: $" + Integer.toString(Main.getWinnings()));
     }
     
 }

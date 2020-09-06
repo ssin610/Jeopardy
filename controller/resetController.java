@@ -36,9 +36,9 @@ import javafx.scene.text.Text;
 public class resetController {
 
     public void onYesButton(ActionEvent event) throws IOException {
-        Main.balance = 0;
-        Main.answeredQuestions.clear();
-        File b = new File("balance");
+        Main.setWinnings(0);
+        Main.addAnsweredQuestion(null);
+        File b = new File("winnings");
         b.delete();
         File a = new File("answeredQuestions");
         a.delete();

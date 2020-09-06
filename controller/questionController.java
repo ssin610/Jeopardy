@@ -71,7 +71,7 @@ public class questionController implements Initializable {
 
         correct.setVisible(false);
         incorrect.setVisible(false);
-        winnings.setText("Winnings: $" + Integer.toString(Main.balance));
+        winnings.setText("Winnings: $" + Integer.toString(Main.getWinnings()));
         question.setText(text);
         menuButton.setVisible(false);
         //ProcessBuilder pb = new ProcessBuilder("festival", "--tts");
@@ -93,21 +93,21 @@ public class questionController implements Initializable {
     }
 
     public void submitButtonPushed(ActionEvent event) throws IOException {
-        Main.answeredQuestions.add(text);
+        Main.addAnsweredQuestion(text);
         if (userAnswer.getText().equalsIgnoreCase(answer)){
-            Main.balance += value;
+            Main.setWinnings(value);
             correct.setText("Correct! $" + value + " has been added to your winnings!");
             question.setVisible(false);
             correct.setVisible(true);
         }
         else {
-            Main.balance -= value;
+            Main.setWinnings(-value);
             incorrect.setText("Incorrect. The correct answer was: " + answer);
             question.setVisible(false);
             incorrect.setVisible(true);
 
         }
-        winnings.setText("Winnings: $" + Integer.toString(Main.balance));
+        winnings.setText("Winnings: $" + Integer.toString(Main.getWinnings()));
         submit.setVisible(false);
         menuButton.setVisible(true);
     }

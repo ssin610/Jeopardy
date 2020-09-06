@@ -57,7 +57,7 @@ public class questionBoardController implements Initializable {
 	public void initialize(URL url, ResourceBundle rb) {
 		resetText.setVisible(false);
         reset.setVisible(false);
-        winnings.setText("Winnings: $" + Integer.toString(Main.balance));
+        winnings.setText("Winnings: $" + Integer.toString(Main.getWinnings()));
        
         String parentDirPath = new File(System.getProperty("user.dir")).getParent();
         File dir = new File(parentDirPath + "/categories");
@@ -99,7 +99,7 @@ public class questionBoardController implements Initializable {
                     String answer = line.split("\\,")[2];
                     answer = answer.trim(); // remove leading space from answer
                     line = line.split("\\,")[0];
-                    if (!(Main.answeredQuestions.contains(question))) {
+                    if (!(Main.getAnsweredQuestions().contains(question))) {
 						counter++;
                         index_y++;
                         addButton(line);
