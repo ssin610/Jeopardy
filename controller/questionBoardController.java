@@ -57,8 +57,11 @@ public class questionBoardController implements Initializable {
 	public void initialize(URL url, ResourceBundle rb) {
 		resetText.setVisible(false);
         reset.setVisible(false);
-		winnings.setText("Winnings: $" + Integer.toString(Main.balance));
-		File dir = new File("./categories");
+        winnings.setText("Winnings: $" + Integer.toString(Main.balance));
+       
+        String parentDirPath = new File(System.getProperty("user.dir")).getParent();
+        File dir = new File(parentDirPath + "/categories");
+       
         File[] directoryListing = dir.listFiles();
         if (directoryListing != null) {
             for (File child : directoryListing) {
@@ -115,17 +118,18 @@ public class questionBoardController implements Initializable {
 				}
                 index_x++;
             }
+            if (counter2 == directoryListing.length) {
+                resetText.setVisible(true);
+                reset.setVisible(true);
+            }
         } else {
             // Handle the case where dir is not really a directory.
             // Checking dir.isDirectory() above would not be sufficient
             // to avoid race conditions with another process that deletes
             // directories.
-            System.out.println("S");
+            System.out.println("no categories folder");
 		}
-		if (counter2 == directoryListing.length) {
-            resetText.setVisible(true);
-        	reset.setVisible(true);
-        }
+		
 	}
 	
 	public void addButton(String text){
@@ -139,7 +143,7 @@ public class questionBoardController implements Initializable {
 	
 	public void changeScreenButtonPushed(ActionEvent event) throws IOException
     {
-        Parent viewParent = FXMLLoader.load(getClass().getResource("mainMenu.fxml"));
+        Parent viewParent = FXMLLoader.load(getClass().getResource("view/mainMenu.fxml"));
         Scene viewScene = new Scene(viewParent);
         
         //This line gets the Stage information
@@ -150,7 +154,7 @@ public class questionBoardController implements Initializable {
 	}
 	
 	public void noCategoriesAvailable(ActionEvent event) throws IOException {
-        Parent viewParent = FXMLLoader.load(getClass().getResource("reset.fxml"));
+        Parent viewParent = FXMLLoader.load(getClass().getResource("view/reset.fxml"));
         Scene viewScene = new Scene(viewParent);
         
         //This line gets the Stage information

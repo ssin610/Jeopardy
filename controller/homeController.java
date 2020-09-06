@@ -13,7 +13,7 @@ public class homeController {
 
     public void changeScreenButtonPushed(ActionEvent event) throws IOException
     {
-        Parent viewParent = FXMLLoader.load(getClass().getResource("mainMenu.fxml"));
+        Parent viewParent = FXMLLoader.load(getClass().getResource("view/mainMenu.fxml"));
         Scene viewScene = new Scene(viewParent);
         
         //This line gets the Stage information

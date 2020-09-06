@@ -23,7 +23,7 @@ public class mainMenuController implements Initializable {
     Button winnings;
 
     public void changeScreenButtonPushed(ActionEvent event) throws IOException {
-        Parent viewParent = FXMLLoader.load(getClass().getResource("questionBoard.fxml"));
+        Parent viewParent = FXMLLoader.load(getClass().getResource("view/questionBoard.fxml"));
         Scene viewScene = new Scene(viewParent);
 
         // This line gets the Stage information
@@ -34,7 +34,7 @@ public class mainMenuController implements Initializable {
     }
 
     public void changeScreenToAskAQuestionButtonPushed(ActionEvent event) throws IOException {
-        Parent viewParent = FXMLLoader.load(getClass().getResource("askAQuestion.fxml"));
+        Parent viewParent = FXMLLoader.load(getClass().getResource("view/askAQuestion.fxml"));
         Scene viewScene = new Scene(viewParent);
 
         // This line gets the Stage information
@@ -45,7 +45,7 @@ public class mainMenuController implements Initializable {
     }
 
     public void changeScreenToViewWinnings(ActionEvent event) throws IOException {
-        Parent viewParent = FXMLLoader.load(getClass().getResource("viewWinnings.fxml"));
+        Parent viewParent = FXMLLoader.load(getClass().getResource("view/viewWinnings.fxml"));
         Scene viewScene = new Scene(viewParent);
 
         // This line gets the Stage information
@@ -57,7 +57,7 @@ public class mainMenuController implements Initializable {
 
     public void onReset(ActionEvent event) throws IOException {
 
-        Parent viewParent = FXMLLoader.load(getClass().getResource("reset.fxml"));
+        Parent viewParent = FXMLLoader.load(getClass().getResource("view/reset.fxml"));
         Scene viewScene = new Scene(viewParent);
         
         //This line gets the Stage information

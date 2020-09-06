@@ -2,6 +2,8 @@ package application;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import helper.TextFileReader;
@@ -19,30 +21,29 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("./home.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("view/home.fxml"));
         primaryStage.setTitle("Jeopardy");
         primaryStage.setScene(new Scene(root, 1000, 671));
         primaryStage.show();
         TextFileReader reader = new TextFileReader();
         File b = new File("balance");
-        if (b.exists()){
+        if (b.exists()) {
             balance = Integer.valueOf(reader.read(b).get(0));
         }
         File a = new File("answeredQuestions");
-        if (a.exists()){
+        if (a.exists()) {
             answeredQuestions = (ArrayList<String>) reader.read(a);
         }
     }
 
     public static void main(String[] args) {
         launch(args);
-        
+
     }
 
     @Override
     public void stop() throws IOException {
-        System.out.println("Stage is closing");
-        TextFileWriter.write("balance", balance, null);   // Save file
+        TextFileWriter.write("balance", balance, null); // Save file
         TextFileWriter.write("answeredQuestions", null, answeredQuestions);
     }
 }

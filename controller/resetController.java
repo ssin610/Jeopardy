@@ -42,7 +42,7 @@ public class resetController {
         b.delete();
         File a = new File("answeredQuestions");
         a.delete();
-        Parent viewParent = FXMLLoader.load(getClass().getResource("home.fxml"));
+        Parent viewParent = FXMLLoader.load(getClass().getResource("view/home.fxml"));
         Scene viewScene = new Scene(viewParent);
         
         //This line gets the Stage information
@@ -53,7 +53,7 @@ public class resetController {
     }
 
     public void onNoButton(ActionEvent event) throws IOException {
-        Parent viewParent = FXMLLoader.load(getClass().getResource("mainMenu.fxml"));
+        Parent viewParent = FXMLLoader.load(getClass().getResource("view/mainMenu.fxml"));
         Scene viewScene = new Scene(viewParent);
         
         //This line gets the Stage information

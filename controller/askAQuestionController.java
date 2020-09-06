@@ -54,7 +54,8 @@ public class askAQuestionController implements Initializable {
         resetText.setVisible(false);
         reset.setVisible(false);
         winnings.setText("Winnings: $" + Integer.toString(Main.balance));
-        File dir = new File("./categories");
+        String parentDirPath = new File(System.getProperty("user.dir")).getParent();
+        File dir = new File(parentDirPath + "/categories");
         File[] directoryListing = dir.listFiles();
         if (directoryListing != null) {
             for (File child : directoryListing) {
@@ -148,7 +149,7 @@ public class askAQuestionController implements Initializable {
 	
 	public void changeScreenButtonPushed(ActionEvent event) throws IOException
     {
-        Parent viewParent = FXMLLoader.load(getClass().getResource("mainMenu.fxml"));
+        Parent viewParent = FXMLLoader.load(getClass().getResource("view/mainMenu.fxml"));
         Scene viewScene = new Scene(viewParent);
         
         //This line gets the Stage information
@@ -160,7 +161,7 @@ public class askAQuestionController implements Initializable {
 
     public void changeScreenToQuestionButtonPushed(ActionEvent event) throws IOException
     {
-        Parent viewParent = FXMLLoader.load(getClass().getResource("question.fxml"));
+        Parent viewParent = FXMLLoader.load(getClass().getResource("view/question.fxml"));
         Scene viewScene = new Scene(viewParent);
         
         //This line gets the Stage information
@@ -171,7 +172,7 @@ public class askAQuestionController implements Initializable {
     }
 
     public void noCategoriesAvailable(ActionEvent event) throws IOException {
-        Parent viewParent = FXMLLoader.load(getClass().getResource("reset.fxml"));
+        Parent viewParent = FXMLLoader.load(getClass().getResource("view/reset.fxml"));
         Scene viewScene = new Scene(viewParent);
         
         //This line gets the Stage information
