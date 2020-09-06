@@ -10,33 +10,31 @@ import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 
+// helper class to write to files when exiting game
 public class TextFileWriter {
 
     public static void write(String filename, Integer balance, ArrayList<String> answeredQuestions) throws IOException {
-        File file = new File(filename);
 
-        // Checks if file does not exist. If it does not, it creates it
+        File file = new File(filename);
+        // if the file doesn't exist, create it
         if (!file.exists()) {
             FileWriter fWriter = new FileWriter(file);
             PrintWriter pWriter = new PrintWriter(fWriter);
         }
 
-        int limit = 5; // int set to 5
-        boolean on = false; // boolean false
-
+        // write balance and answered questions to their respective files
         try (Writer writer = new BufferedWriter(
-                new OutputStreamWriter(new FileOutputStream(filename), "utf-8"))) { // sets the output where to write
+                new OutputStreamWriter(new FileOutputStream(filename), "utf-8"))) { 
                     if (balance != null) {
-                        writer.write("" + balance); // writes
+                        writer.write("" + balance); 
                     }
                     else {
                         for (String string : answeredQuestions) {
                             writer.write(string + "\n");
                         }
                     }
-        }
-
-        catch (IOException e) {
+        
+        } catch (IOException e) {
 
         }
 	}

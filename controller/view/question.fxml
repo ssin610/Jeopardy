@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="1000.0" style="-fx-background-color: #1f1f1f;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.questionController">
    <children>
-      <Button fx:id="submit" layoutX="373.0" layoutY="494.0" mnemonicParsing="false" onAction="#submitButtonPushed" prefHeight="80.0" prefWidth="250.0" style="-fx-background-color: #ffc100;" text="Submit">
+      <Button fx:id="submitButton" layoutX="373.0" layoutY="494.0" mnemonicParsing="false" onAction="#onSubmitButtonPushed" prefHeight="80.0" prefWidth="250.0" style="-fx-background-color: #ffc100;" text="Submit">
          <font>
             <Font name="Comic Sans MS Bold" size="37.0" />
          </font>
@@ -23,27 +23,27 @@
             <Font name="Comic Sans MS Bold" size="20.0" />
          </font>
       </Button>
-      <Button fx:id="menuButton" layoutX="375.0" layoutY="494.0" mnemonicParsing="false" onAction="#changeScreenButtonPushed" prefHeight="80.0" prefWidth="250.0" style="-fx-background-color: #ffc100;" text="Main Menu">
+      <Button fx:id="menuButton" layoutX="375.0" layoutY="494.0" mnemonicParsing="false" onAction="#onMainMenuPushed" prefHeight="80.0" prefWidth="250.0" style="-fx-background-color: #ffc100;" text="Main Menu">
          <font>
             <Font name="Comic Sans MS Bold" size="34.0" />
          </font>
       </Button>
-      <Text fill="#45ccca" layoutX="135.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your question is:">
+      <Text fx:id="promptText" fill="#45ccca" layoutX="135.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your question is:">
          <font>
             <Font name="Comic Sans MS Bold" size="90.0" />
          </font>
       </Text>
-      <Text fx:id="question" fill="#5ec738" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This country is immediately north of the United States of America" textAlignment="CENTER" wrappingWidth="1000.0">
+      <Text fx:id="questionText" fill="#5ec738" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This country is immediately north of the United States of America" textAlignment="CENTER" wrappingWidth="1000.0">
          <font>
             <Font name="Comic Sans MS Bold" size="45.0" />
          </font>
       </Text>
-      <Text fx:id="correct" fill="#45ccca" layoutX="-2.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correct! $Value has been added to your winnings!" textAlignment="CENTER" wrappingWidth="1000.0">
+      <Text fx:id="correctText" fill="#45ccca" layoutX="-2.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correct! $Value has been added to your winnings!" textAlignment="CENTER" wrappingWidth="1000.0">
          <font>
             <Font name="Comic Sans MS Bold" size="45.0" />
          </font>
       </Text>
-      <Text fx:id="incorrect" fill="#c93737" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Incorrect" textAlignment="CENTER" wrappingWidth="1000.0">
+      <Text fx:id="incorrectText" fill="#c93737" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Incorrect" textAlignment="CENTER" wrappingWidth="1000.0">
          <font>
             <Font name="Comic Sans MS Bold" size="50.0" />
          </font>

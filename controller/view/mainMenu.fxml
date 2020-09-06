@@ -7,11 +7,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="1000.0" style="-fx-background-color: #1f1f1f;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.mainMenuController">
    <children>
-      <Button layoutX="148.0" layoutY="194.0" mnemonicParsing="false" onAction="#changeScreenButtonPushed" prefHeight="100.0" prefWidth="291.0" style="-fx-background-color: #ffc100;" text="Show Question Board">
+      <Button layoutX="148.0" layoutY="194.0" mnemonicParsing="false" onAction="#onQuestionBoardPushed" prefHeight="100.0" prefWidth="291.0" style="-fx-background-color: #ffc100;" text="Show Question Board">
          <font>
             <Font name="Comic Sans MS Bold" size="24.0" />
          </font></Button>
-      <Button layoutX="556.0" layoutY="194.0" mnemonicParsing="false" onAction="#changeScreenToAskAQuestionButtonPushed" prefHeight="100.0" prefWidth="291.0" style="-fx-background-color: #ffc100;" text="Ask a question">
+      <Button layoutX="556.0" layoutY="194.0" mnemonicParsing="false" onAction="#onAskAQuestion" prefHeight="100.0" prefWidth="291.0" style="-fx-background-color: #ffc100;" text="Ask a question">
          <font>
             <Font name="Comic Sans MS Bold" size="28.0" />
          </font></Button>

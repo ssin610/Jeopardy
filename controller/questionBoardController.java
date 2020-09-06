@@ -5,12 +5,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-
 import application.Main;
 import helper.TextFileReader;
 import javafx.event.ActionEvent;
@@ -19,149 +13,112 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.Node;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
-import javafx.geometry.Pos;
-import javafx.geometry.VPos;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class questionBoardController implements Initializable {
-	int index_y = 0;
-	int index_x = 0;
-	int counter2 = 0;
 
-	@FXML
-	GridPane button_grid;
+    @FXML
+    GridPane grid;
 
-	@FXML
-	Button winnings;
-	
-	@FXML
-	Button reset;
-	
-	@FXML
+    @FXML
+    Button winnings;
+
+    @FXML
+    Button reset;
+
+    @FXML
     Text resetText;
 
-	public void initialize(URL url, ResourceBundle rb) {
-		resetText.setVisible(false);
+    // track the x and y positions within the gridpane
+    int index_y = 0;
+    int index_x = 0;
+
+    // track the progress of the game
+    int completedCategoryCounter = 0;
+
+    public void initialize(URL url, ResourceBundle rb) {
+        resetText.setVisible(false);
         reset.setVisible(false);
         winnings.setText("Winnings: $" + Integer.toString(Main.getWinnings()));
-       
-        String parentDirPath = new File(System.getProperty("user.dir")).getParent();
-        File dir = new File(parentDirPath + "/categories");
-       
-        File[] directoryListing = dir.listFiles();
-        if (directoryListing != null) {
-            for (File child : directoryListing) {
-				int counter = 0;
-				index_y = 0;
-				Text category = new Text(child.getName());
-				category.setFont(Font.font("Agency FB", 45));
-				category.setFill(Color.LIGHTSKYBLUE);
-                button_grid.add(category, index_x, index_y);
-				button_grid.setHalignment(category, HPos.CENTER);
-                Future<List<String>> future;
-                ExecutorService executorService = Executors.newSingleThreadExecutor();
+        File dir = new File("categories"); // get location of categories folder
+        File[] categoryFolder = dir.listFiles();
+        if (categoryFolder != null) {
+            for (File category : categoryFolder) { // iterate through each category
+                int validQuestionCounter = 0; // track the unanswered questions
+                index_y = 0;
+                Text categoryName = new Text(category.getName().toUpperCase());
+                categoryName.setFont(Font.font("Agency FB", 45));
+                categoryName.setFill(Color.LIGHTSKYBLUE);
+                grid.add(categoryName, index_x, index_y);
+                GridPane.setHalignment(categoryName, HPos.CENTER);
                 TextFileReader reader = new TextFileReader();
-                future = executorService.submit(new Callable<List<String>>() {
-                    public List<String> call() throws Exception {
-                        return reader.read(child);
-                    }
-                });
-
-                List<String> lines = null;
-                try {
-                    lines = future.get();
-                } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                executorService.shutdownNow();
-
-                for (String line : lines) {
-                    
+                List<String> lines = reader.read(category);
+                for (String line : lines) { // go through every line of the category file and parse the results, forming
+                                            // the respective fields
                     String question = line.split("\\,")[1];
                     String answer = line.split("\\,")[2];
-                    answer = answer.trim(); // remove leading space from answer
+                    answer = answer.trim();
                     line = line.split("\\,")[0];
-                    if (!(Main.getAnsweredQuestions().contains(question))) {
-						counter++;
+                    if (!(Main.getAnsweredQuestions().contains(question))) { // if the question has not been answered
+                                                                             // yet
+                        validQuestionCounter++;
                         index_y++;
-                        addButton(line);
+                        addButton(line); // add it to the board
                     }
-                   
-
 				}
-				if (counter == 0) {
-					Text complete = new Text("Category complete!");
-					complete.setFont(Font.font("Agency FB", 29));
-					complete.setFill(Color.LIGHTGREEN);
-					complete.setWrappingWidth(150);
-					button_grid.add(complete, index_x, 1);
-					button_grid.setHalignment(complete, HPos.CENTER);
-					counter2++;
-				}
+				if (validQuestionCounter == 0) {
+                    Text complete = new Text("Category complete!");
+                    complete.setFont(Font.font("Agency FB", 29));
+                    complete.setFill(Color.LIGHTGREEN);
+                    complete.setWrappingWidth(150);
+                    grid.add(complete, index_x, 1);
+                    GridPane.setHalignment(complete, HPos.CENTER);
+                    completedCategoryCounter++;
+                }
                 index_x++;
             }
-            if (counter2 == directoryListing.length) {
-                resetText.setVisible(true);
-                reset.setVisible(true);
-            }
         } else {
-            // Handle the case where dir is not really a directory.
-            // Checking dir.isDirectory() above would not be sufficient
-            // to avoid race conditions with another process that deletes
-            // directories.
-            System.out.println("no categories folder");
-		}
-		
+            // the case when the category folder is not found
+            System.out.println("Category folder not found");
+        }
+
+        if (completedCategoryCounter == categoryFolder.length) { // when the game has been completed
+            resetText.setVisible(true);
+            reset.setVisible(true);
+        }
 	}
 	
 	public void addButton(String text){
-		Button sound_button = new Button("$" + text);
-		sound_button.setPrefSize(250, 80);
-		sound_button.setFont(Font.font("Agency FB", 40));
-		sound_button.setStyle("-fx-background-color: #ffc100; ");
-		button_grid.add(sound_button, index_x,index_y);
-		button_grid.setHalignment(sound_button, HPos.CENTER);
+		Button button = new Button("$" + text);
+        button.setPrefSize(250, 80);
+        button.setFont(Font.font("Agency FB", 40));
+        button.setStyle("-fx-background-color: #ffc100; ");
+		grid.add(button, index_x, index_y);
+        GridPane.setHalignment(button, HPos.CENTER);
 	}
 	
-	public void changeScreenButtonPushed(ActionEvent event) throws IOException
+	public void onMainMenuPushed(ActionEvent event) throws IOException
     {
         Parent viewParent = FXMLLoader.load(getClass().getResource("view/mainMenu.fxml"));
         Scene viewScene = new Scene(viewParent);
-        
-        //This line gets the Stage information
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
         window.setScene(viewScene);
         window.show();
 	}
-	
-	public void noCategoriesAvailable(ActionEvent event) throws IOException {
+    
+    // called when there are no categories available
+	public void onResetPushed(ActionEvent event) throws IOException {
         Parent viewParent = FXMLLoader.load(getClass().getResource("view/reset.fxml"));
         Scene viewScene = new Scene(viewParent);
-        
-        //This line gets the Stage information
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
         window.setScene(viewScene);
         window.show();
     }
-
 }

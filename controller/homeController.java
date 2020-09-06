@@ -11,14 +11,11 @@ import javafx.stage.Stage;
 
 public class homeController {
 
-    public void changeScreenButtonPushed(ActionEvent event) throws IOException
+    public void onMainMenuPushed(ActionEvent event) throws IOException
     {
         Parent viewParent = FXMLLoader.load(getClass().getResource("view/mainMenu.fxml"));
         Scene viewScene = new Scene(viewParent);
-        
-        //This line gets the Stage information
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
         window.setScene(viewScene);
         window.show();
     }
