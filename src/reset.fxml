@@ -13,12 +13,12 @@
             <Font name="Agency FB Bold" size="89.0" />
          </font>
       </Text>
-      <Button layoutX="140.0" layoutY="388.0" mnemonicParsing="false" prefHeight="99.0" prefWidth="273.0" style="-fx-background-color: #ffc100;" text="Yes">
+      <Button layoutX="140.0" layoutY="388.0" mnemonicParsing="false" onAction="#onYesButton" prefHeight="99.0" prefWidth="273.0" style="-fx-background-color: #ffc100;" text="Yes">
          <font>
             <Font name="Agency FB Bold" size="40.0" />
          </font>
       </Button>
-      <Button layoutX="583.0" layoutY="388.0" mnemonicParsing="false" prefHeight="99.0" prefWidth="273.0" style="-fx-background-color: #ffc100;" text="No">
+      <Button layoutX="583.0" layoutY="388.0" mnemonicParsing="false" onAction="#onNoButton" prefHeight="99.0" prefWidth="273.0" style="-fx-background-color: #ffc100;" text="No">
          <font>
             <Font name="Agency FB Bold" size="40.0" />
          </font>

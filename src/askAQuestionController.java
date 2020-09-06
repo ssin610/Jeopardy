@@ -34,19 +34,28 @@ import javafx.scene.text.Text;
 public class askAQuestionController implements Initializable {
     int index_y = 0;
     int index_x = 0;
-
+    int counter2 = 0;
     @FXML
     GridPane button_grid;
 
     @FXML
     Button winnings;
 
+    @FXML
+    Button reset;
+
+    @FXML
+    Text resetText;
+
     public void initialize(URL url, ResourceBundle rb) {
+        resetText.setVisible(false);
+        reset.setVisible(false);
         winnings.setText("Winnings: $" + Integer.toString(Main.balance));
         File dir = new File("./categories");
         File[] directoryListing = dir.listFiles();
         if (directoryListing != null) {
             for (File child : directoryListing) {
+                int counter = 0;
                 index_y = 0;
                 Text category = new Text(child.getName());
 				category.setFont(Font.font("Agency FB", 50));
@@ -81,11 +90,19 @@ public class askAQuestionController implements Initializable {
                     answer = answer.trim(); // remove leading space from answer
                     line = line.split("\\,")[0];
                     if (!(Main.answeredQuestions.contains(question))) {
+                        counter++;
                         index_y++;
                         addButton(line, question, answer);
                     }
-                   
-
+                }
+                if (counter == 0) {
+                    Text complete = new Text("Category complete!");
+                    complete.setFont(Font.font("Agency FB", 40));
+                    complete.setFill(Color.LIGHTGREEN);
+                    complete.setWrappingWidth(150);
+                    button_grid.add(complete, index_x, 1);
+                    button_grid.setHalignment(complete, HPos.CENTER);
+                    counter2++;
                 }
                 index_x++;
             }
@@ -95,6 +112,10 @@ public class askAQuestionController implements Initializable {
             // to avoid race conditions with another process that deletes
             // directories.
             System.out.println("S");
+        }
+        if (counter2 == directoryListing.length) {
+            resetText.setVisible(true);
+            reset.setVisible(true);
         }
     }
 
@@ -137,6 +158,17 @@ public class askAQuestionController implements Initializable {
     public void changeScreenToQuestionButtonPushed(ActionEvent event) throws IOException
     {
         Parent viewParent = FXMLLoader.load(getClass().getResource("question.fxml"));
+        Scene viewScene = new Scene(viewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(viewScene);
+        window.show();
+    }
+
+    public void noCategoriesAvailable(ActionEvent event) throws IOException {
+        Parent viewParent = FXMLLoader.load(getClass().getResource("reset.fxml"));
         Scene viewScene = new Scene(viewParent);
         
         //This line gets the Stage information

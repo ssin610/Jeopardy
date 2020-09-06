@@ -33,7 +33,24 @@ import javafx.scene.text.Text;
 public class resetController {
 
     public void onYesButton(ActionEvent event) throws IOException {
-        Parent viewParent = FXMLLoader.load(getClass().getResource("question.fxml"));
+        Main.balance = 0;
+        Main.answeredQuestions.clear();
+        File b = new File("balance");
+        b.delete();
+        File a = new File("answeredQuestions");
+        a.delete();
+        Parent viewParent = FXMLLoader.load(getClass().getResource("home.fxml"));
+        Scene viewScene = new Scene(viewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(viewScene);
+        window.show();
+    }
+
+    public void onNoButton(ActionEvent event) throws IOException {
+        Parent viewParent = FXMLLoader.load(getClass().getResource("mainMenu.fxml"));
         Scene viewScene = new Scene(viewParent);
         
         //This line gets the Stage information

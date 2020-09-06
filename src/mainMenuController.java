@@ -55,12 +55,15 @@ public class mainMenuController implements Initializable {
     }
 
     public void onReset(ActionEvent event) throws IOException {
-        Main.balance = 0;
-        Main.answeredQuestions.clear();
-        File b = new File("balance");
-        b.delete();
-        File a = new File("answeredQuestions");
-        a.delete();
+
+        Parent viewParent = FXMLLoader.load(getClass().getResource("reset.fxml"));
+        Scene viewScene = new Scene(viewParent);
+        
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(viewScene);
+        window.show();
     }
 
     public void onExit(ActionEvent event) throws IOException {
