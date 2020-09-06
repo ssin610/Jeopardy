@@ -15,15 +15,11 @@
          <font>
             <Font name="Agency FB Bold" size="30.0" />
          </font></Button>
-      <Button layoutX="148.0" layoutY="387.0" mnemonicParsing="false" onAction="#changeScreenToViewWinnings" prefHeight="100.0" prefWidth="291.0" style="-fx-background-color: #ffc100;" text="View current winnings">
-         <font>
-            <Font name="Agency FB Bold" size="30.0" />
-         </font></Button>
       <Button layoutX="556.0" layoutY="387.0" mnemonicParsing="false" onAction="#onReset" prefHeight="100.0" prefWidth="291.0" style="-fx-background-color: #ffc100;" text="Reset game">
          <font>
             <Font name="Agency FB Bold" size="30.0" />
          </font></Button>
-      <Button layoutX="375.0" layoutY="550.0" mnemonicParsing="false" onAction="#onExit" prefHeight="80.0" prefWidth="250.0" style="-fx-background-color: #ffc100;" text="Exit" textFill="#c93737">
+      <Button layoutX="148.0" layoutY="387.0" mnemonicParsing="false" onAction="#onExit" prefHeight="100.0" prefWidth="291.0" style="-fx-background-color: #ffc100;" text="Exit" textFill="#c93737">
          <font>
             <Font name="Agency FB Bold" size="30.0" />
          </font></Button>
@@ -32,5 +28,10 @@
             <Font name="Agency FB Bold" size="89.0" />
          </font>
       </Text>
+      <Button fx:id="winnings" layoutX="14.0" layoutY="550.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="291.0" style="-fx-background-color: #ffc100;" text="Winnings:">
+         <font>
+            <Font name="Agency FB Bold" size="30.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

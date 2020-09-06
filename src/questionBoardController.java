@@ -41,10 +41,14 @@ public class questionBoardController implements Initializable {
 
 	@FXML
 	GridPane button_grid;
+
+	@FXML
+	Button winnings;
 	
 
 	public void initialize(URL url, ResourceBundle rb) {
-		File dir = new File("./assignment2ssin610/src/categories");
+		winnings.setText("Winnings: $" + Integer.toString(Main.balance));
+		File dir = new File("./categories");
         File[] directoryListing = dir.listFiles();
         if (directoryListing != null) {
             for (File child : directoryListing) {

@@ -38,12 +38,24 @@ public class questionController implements Initializable {
 
     @FXML
     TextField userAnswer;   
+
+    @FXML
+    Text question;  
+    
+    @FXML
+    Text correct; 
+
+    @FXML
+    Text incorrect; 
     
     @FXML
     Button submit; 
     
     @FXML
-	Button goBack; 
+    Button menuButton; 
+    
+    @FXML
+	Button winnings;
 
     static String text;
     static String answer;
@@ -53,24 +65,33 @@ public class questionController implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        grid.add(new Text(text), 0,1);
-        goBack.setDisable(true);
 
+        correct.setVisible(false);
+        incorrect.setVisible(false);
+        winnings.setText("Winnings: $" + Integer.toString(Main.balance));
+        question.setText(text);
+        menuButton.setVisible(false);
+        
     }
 
     public void submitButtonPushed(ActionEvent event) throws IOException {
         Main.answeredQuestions.add(text);
         if (userAnswer.getText().equalsIgnoreCase(answer)){
             Main.balance += value;
-            System.out.println(Main.balance);
-            
+            correct.setText("Correct! $" + value + " has been added to your winnings!");
+            question.setVisible(false);
+            correct.setVisible(true);
         }
         else {
             Main.balance -= value;
-            System.out.println(answer);
+            incorrect.setText("Incorrect. The correct answer was: " + answer);
+            question.setVisible(false);
+            incorrect.setVisible(true);
+
         }
-        submit.setDisable(true);
-        goBack.setDisable(false);
+        winnings.setText("Winnings: $" + Integer.toString(Main.balance));
+        submit.setVisible(false);
+        menuButton.setVisible(true);
     }
 
     public void changeScreenButtonPushed(ActionEvent event) throws IOException

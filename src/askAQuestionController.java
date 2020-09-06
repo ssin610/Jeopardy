@@ -20,12 +20,15 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.HPos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class askAQuestionController implements Initializable {
@@ -35,15 +38,21 @@ public class askAQuestionController implements Initializable {
     @FXML
     GridPane button_grid;
 
-    public void initialize(URL url, ResourceBundle rb) {
+    @FXML
+    Button winnings;
 
-        File dir = new File("./assignment2ssin610/src/categories");
+    public void initialize(URL url, ResourceBundle rb) {
+        winnings.setText("Winnings: $" + Integer.toString(Main.balance));
+        File dir = new File("./categories");
         File[] directoryListing = dir.listFiles();
         if (directoryListing != null) {
             for (File child : directoryListing) {
                 index_y = 0;
-                button_grid.add(new Text(child.getName()), index_x, index_y);
-
+                Text category = new Text(child.getName());
+				category.setFont(Font.font("Agency FB", 50));
+				category.setFill(Color.LIGHTSKYBLUE);
+                button_grid.add(category, index_x, index_y);
+				button_grid.setHalignment(category, HPos.CENTER);
                 Future<List<String>> future;
                 ExecutorService executorService = Executors.newSingleThreadExecutor();
                 TextFileReader reader = new TextFileReader();
@@ -91,7 +100,10 @@ public class askAQuestionController implements Initializable {
 
     public void addButton(String text, String question, String answer){
         Button sound_button = new Button(text);
-        
+        sound_button.setPrefSize(250, 80);
+		sound_button.setFont(Font.font("Agency FB", 43));
+		sound_button.setStyle("-fx-background-color: #ffc100; ");
+		
         sound_button.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -107,6 +119,7 @@ public class askAQuestionController implements Initializable {
             }
         });
         button_grid.add(sound_button, index_x,index_y);
+        button_grid.setHalignment(sound_button, HPos.CENTER);
 	}
 	
 	public void changeScreenButtonPushed(ActionEvent event) throws IOException

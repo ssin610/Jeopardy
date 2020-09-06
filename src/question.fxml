@@ -1,48 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="assignment2ssin610.src.questionController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="1000.0" style="-fx-background-color: #1f1f1f;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="assignment2ssin610.src.questionController">
    <children>
-      <GridPane fx:id="grid" layoutY="-1.0" prefHeight="400.0" prefWidth="600.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Your question is:">
-               <GridPane.margin>
-                  <Insets left="250.0" />
-               </GridPane.margin>
-            </Text>
-            <TextField fx:id="userAnswer" prefHeight="25.0" prefWidth="600.0" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets left="100.0" right="100.0" />
-               </GridPane.margin>
-            </TextField>
-            <Button fx:id="submit" mnemonicParsing="false" onAction="#submitButtonPushed" text="Submit" GridPane.rowIndex="3">
-               <GridPane.margin>
-                  <Insets left="250.0" right="250.0" />
-               </GridPane.margin>
-            </Button>
-            <Button fx:id="goBack" mnemonicParsing="false" onAction="#changeScreenButtonPushed" text="Go back" GridPane.rowIndex="3">
-               <GridPane.margin>
-                  <Insets left="30.0" />
-               </GridPane.margin>
-            </Button>
-         </children>
-      </GridPane>
+      <Button fx:id="submit" layoutX="373.0" layoutY="494.0" mnemonicParsing="false" onAction="#submitButtonPushed" prefHeight="80.0" prefWidth="250.0" style="-fx-background-color: #ffc100;" text="Submit">
+         <font>
+            <Font name="Agency FB Bold" size="43.0" />
+         </font>
+      </Button>
+      <TextField fx:id="userAnswer" layoutX="101.0" layoutY="351.0" prefHeight="45.0" prefWidth="794.0" promptText="Type your answer here">
+         <font>
+            <Font name="Agency FB" size="24.0" />
+         </font>
+      </TextField>
+      <Button fx:id="winnings" layoutX="14.0" layoutY="550.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="250.0" style="-fx-background-color: #ffc100;" text="Winnings:">
+         <font>
+            <Font name="Agency FB Bold" size="30.0" />
+         </font>
+      </Button>
+      <Button fx:id="menuButton" layoutX="375.0" layoutY="494.0" mnemonicParsing="false" onAction="#changeScreenButtonPushed" prefHeight="80.0" prefWidth="250.0" style="-fx-background-color: #ffc100;" text="Main Menu">
+         <font>
+            <Font name="Agency FB Bold" size="43.0" />
+         </font>
+      </Button>
+      <Text fill="#45ccca" layoutX="246.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your question is:">
+         <font>
+            <Font name="Agency FB Bold" size="89.0" />
+         </font>
+      </Text>
+      <Text fx:id="question" fill="#5ec738" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This country is immediately north of the United States of America" textAlignment="CENTER" wrappingWidth="1000.0">
+         <font>
+            <Font name="Agency FB Bold" size="50.0" />
+         </font>
+      </Text>
+      <Text fx:id="correct" fill="#45ccca" layoutX="-2.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correct! $Value has been added to your winnings!" textAlignment="CENTER" wrappingWidth="1000.0">
+         <font>
+            <Font name="Agency FB Bold" size="50.0" />
+         </font>
+      </Text>
+      <Text fx:id="incorrect" fill="#c93737" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Incorrect" textAlignment="CENTER" wrappingWidth="1000.0">
+         <font>
+            <Font name="Agency FB Bold" size="50.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
