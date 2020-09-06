@@ -1,4 +1,4 @@
-package assignment2ssin610.src;
+package src.helper;
 
 import java.io.BufferedWriter;
 import java.io.File;

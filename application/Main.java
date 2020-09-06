@@ -1,9 +1,11 @@
-package assignment2ssin610.src;
+package src.application;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import src.helper.TextFileReader;
+import src.helper.TextFileWriter;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,7 +19,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("./home.fxml"));
         primaryStage.setTitle("Jeopardy");
         primaryStage.setScene(new Scene(root, 1000, 671));
         primaryStage.show();

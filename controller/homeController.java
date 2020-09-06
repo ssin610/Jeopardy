@@ -1,4 +1,4 @@
-package assignment2ssin610.src;
+package src.controller;
 
 import java.io.IOException;
 

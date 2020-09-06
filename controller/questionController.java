@@ -1,11 +1,12 @@
-package assignment2ssin610.src;
+package src.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -14,6 +15,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+
+import src.application.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -71,6 +74,21 @@ public class questionController implements Initializable {
         winnings.setText("Winnings: $" + Integer.toString(Main.balance));
         question.setText(text);
         menuButton.setVisible(false);
+        //ProcessBuilder pb = new ProcessBuilder("festival", "--tts");
+       // Process p = null;
+       // try {
+        //    p = pb.start();
+       // } catch (IOException e) {
+            // TODO Auto-generated catch block
+       //     e.printStackTrace();
+      //  }
+      //  finally {
+            
+     //   }
+        //OutputStream in = p.getOutputStream();
+        //PrintWriter stdin = new PrintWriter(in);
+       // stdin.println(question);
+       // stdin.close();
         
     }
 

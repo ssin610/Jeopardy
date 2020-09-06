@@ -1,4 +1,4 @@
-package assignment2ssin610.src;
+package src.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,6 +10,9 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+
+import src.application.Main;
+import src.helper.TextFileReader;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -58,7 +61,7 @@ public class askAQuestionController implements Initializable {
                 int counter = 0;
                 index_y = 0;
                 Text category = new Text(child.getName());
-				category.setFont(Font.font("Agency FB", 50));
+				category.setFont(Font.font("Agency FB", 45));
 				category.setFill(Color.LIGHTSKYBLUE);
                 button_grid.add(category, index_x, index_y);
 				button_grid.setHalignment(category, HPos.CENTER);
@@ -97,7 +100,7 @@ public class askAQuestionController implements Initializable {
                 }
                 if (counter == 0) {
                     Text complete = new Text("Category complete!");
-                    complete.setFont(Font.font("Agency FB", 40));
+                    complete.setFont(Font.font("Agency FB", 29));
                     complete.setFill(Color.LIGHTGREEN);
                     complete.setWrappingWidth(150);
                     button_grid.add(complete, index_x, 1);
@@ -120,9 +123,9 @@ public class askAQuestionController implements Initializable {
     }
 
     public void addButton(String text, String question, String answer){
-        Button sound_button = new Button(text);
+        Button sound_button = new Button("$" + text);
         sound_button.setPrefSize(250, 80);
-		sound_button.setFont(Font.font("Agency FB", 43));
+		sound_button.setFont(Font.font("Agency FB", 40));
 		sound_button.setStyle("-fx-background-color: #ffc100; ");
 		
         sound_button.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() {
