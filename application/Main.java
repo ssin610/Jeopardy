@@ -1,11 +1,11 @@
-package src.application;
+package application;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import src.helper.TextFileReader;
-import src.helper.TextFileWriter;
+import helper.TextFileReader;
+import helper.TextFileWriter;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

@@ -1,4 +1,4 @@
-package src.controller;
+package controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,8 +11,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import src.application.Main;
-import src.helper.TextFileReader;
+import application.Main;
+import helper.TextFileReader;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
